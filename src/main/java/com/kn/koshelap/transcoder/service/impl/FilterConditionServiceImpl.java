@@ -55,6 +55,16 @@ public class FilterConditionServiceImpl implements FilterConditionService {
     }
 
     @Override
+    public FilterConditionDto save(FilterConditionDto filterConditionDto) {
+        return mapper.map(repository.save(mapper.map(filterConditionDto, FilterCondition.class)), FilterConditionDto.class);
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
     public FilterConditionDtoList find(FilterSearchDto searchDto) {
         List<FilterCondition> sites = repository.findAll(
                 Specification

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class FilterConditionDto {
+    private Long id;
     private String fieldName;
     private String conditionOperator;
     private String propertyValue;
