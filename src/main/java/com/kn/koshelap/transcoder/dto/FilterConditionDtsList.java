@@ -1,5 +1,7 @@
 package com.kn.koshelap.transcoder.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class FilterConditionDto {
-    private Long id;
-    private String fieldName;
-    private String conditionOperator;
-    private String propertyValue;
-    private Long filterId;
+public class FilterConditionDtsList {
+    private List<FilterConditionDts> filterList;
 }

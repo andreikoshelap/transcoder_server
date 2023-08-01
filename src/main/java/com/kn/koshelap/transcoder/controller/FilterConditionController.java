@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kn.koshelap.transcoder.dto.FilterConditionDto;
+import com.kn.koshelap.transcoder.dto.FilterConditionDts;
 import com.kn.koshelap.transcoder.dto.search.FilterSearchDto;
 import com.kn.koshelap.transcoder.service.FilterConditionService;
 
@@ -38,7 +38,7 @@ public class FilterConditionController {
     }
 
     @PostMapping("/filter/save")
-    public ResponseEntity<?> save(@RequestBody FilterConditionDto filterDto) {
+    public ResponseEntity<?> save(@RequestBody FilterConditionDts filterDto) {
         return new ResponseEntity<>(service.save(filterDto), HttpStatus.OK);
     }
 

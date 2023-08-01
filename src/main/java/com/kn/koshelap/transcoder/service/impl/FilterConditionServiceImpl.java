@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 
 import com.kn.koshelap.transcoder.domain.Capital;
 import com.kn.koshelap.transcoder.domain.FilterCondition;
-import com.kn.koshelap.transcoder.dto.FilterConditionDto;
-import com.kn.koshelap.transcoder.dto.FilterConditionDtoList;
+import com.kn.koshelap.transcoder.dto.FilterConditionDts;
+import com.kn.koshelap.transcoder.dto.FilterConditionDtsList;
 import com.kn.koshelap.transcoder.dto.search.FilterSearchDto;
 import com.kn.koshelap.transcoder.repository.FilterRepository;
 import com.kn.koshelap.transcoder.service.FilterConditionService;
@@ -39,10 +39,10 @@ public class FilterConditionServiceImpl implements FilterConditionService {
     }
 
     @Override
-    public FilterConditionDtoList getAllFilters() {
+    public FilterConditionDtsList getAllFilters() {
         List<FilterCondition> list = repository.findAll();
-        return FilterConditionDtoList.builder()
-                .filterList(mapper.mapAsList(list, FilterConditionDto.class)).build();
+        return FilterConditionDtsList.builder()
+                .filterList(mapper.mapAsList(list, FilterConditionDts.class)).build();
     }
 
     private List<Field> findAllFields(Class<?> entityClass) {
@@ -55,8 +55,8 @@ public class FilterConditionServiceImpl implements FilterConditionService {
     }
 
     @Override
-    public FilterConditionDto save(FilterConditionDto filterConditionDto) {
-        return mapper.map(repository.save(mapper.map(filterConditionDto, FilterCondition.class)), FilterConditionDto.class);
+    public FilterConditionDts save(FilterConditionDts filterConditionDts) {
+        return mapper.map(repository.save(mapper.map(filterConditionDts, FilterCondition.class)), FilterConditionDts.class);
     }
 
     @Override
@@ -65,13 +65,13 @@ public class FilterConditionServiceImpl implements FilterConditionService {
     }
 
     @Override
-    public FilterConditionDtoList find(FilterSearchDto searchDto) {
+    public FilterConditionDtsList find(FilterSearchDto searchDto) {
         List<FilterCondition> criterion = repository.findAll(
                 Specification
                         .where(hasName(searchDto.getFieldName()))
                         .and(hasFilterId(searchDto.getFilterId())));
-        return FilterConditionDtoList.builder()
-                .filterList(mapper.mapAsList(criterion, FilterConditionDto.class))
+        return FilterConditionDtsList.builder()
+                .filterList(mapper.mapAsList(criterion, FilterConditionDts.class))
                 .build();
     }
     static Specification<FilterCondition> hasName(String fieldName) {
