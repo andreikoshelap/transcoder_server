@@ -21,5 +21,6 @@ public class CapitalDto {
     private BigDecimal lat;
     private BigDecimal lng;
     private Timestamp foundingDate;
+    private Timestamp messageDate;
 
 }

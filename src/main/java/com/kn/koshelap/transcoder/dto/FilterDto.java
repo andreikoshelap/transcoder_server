@@ -11,10 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class FilterConditionDto {
+public class FilterDto {
     private Long id;
-    private String fieldName;
-    private String conditionOperator;
-    private String propertyValue;
-    private Long filterId;
+    private String filterName;
+
 }

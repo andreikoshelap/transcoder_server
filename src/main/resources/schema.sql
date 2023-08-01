@@ -18,7 +18,14 @@ create table if not exists city_capital
     population bigint,
     lat float,
     lng float,
-    founding_date timestamp
+    founding_date timestamp,
+    message_date timestamp
+);
+
+create table if not exists filter
+(
+    id bigint primary key auto_increment,
+    filter_name varchar(255)
 );
 
 create table if not exists filter_condition
@@ -26,7 +33,8 @@ create table if not exists filter_condition
     id bigint primary key auto_increment,
     field_name varchar(255),
     condition_operator varchar(50),
-    property_value varchar(255)
+    property_value varchar(255),
+    filter_id bigint references filter (id)
 );
 
 

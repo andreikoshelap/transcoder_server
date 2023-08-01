@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FilterSearchDto {
     private String fieldName;;
+    private Long filterId;;
 }

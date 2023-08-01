@@ -17,4 +17,5 @@ public class CapitalSearchDto {
     private BigDecimal lat;
     private BigDecimal lng;
     private Timestamp foundingDate;
+    private Timestamp messageDate;
 }

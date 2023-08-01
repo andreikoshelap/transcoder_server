@@ -66,19 +66,29 @@ public class FilterConditionServiceImpl implements FilterConditionService {
 
     @Override
     public FilterConditionDtoList find(FilterSearchDto searchDto) {
-        List<FilterCondition> sites = repository.findAll(
+        List<FilterCondition> criterion = repository.findAll(
                 Specification
-                        .where(hasName(searchDto.getFieldName())));
+                        .where(hasName(searchDto.getFieldName()))
+                        .and(hasFilterId(searchDto.getFilterId())));
         return FilterConditionDtoList.builder()
-                .filterList(mapper.mapAsList(sites, FilterConditionDto.class))
+                .filterList(mapper.mapAsList(criterion, FilterConditionDto.class))
                 .build();
     }
-    static Specification<FilterCondition> hasName(String name) {
-        return (site, cq, cb) -> {
-            if (name == null) {
+    static Specification<FilterCondition> hasName(String fieldName) {
+        return (criteria, cq, cb) -> {
+            if (fieldName == null) {
                 return null;
             } else {
-                return cb.like(site.get("name"), "%" + name + "%");
+                return cb.like(criteria.get("field_name"), "%" + fieldName + "%");
+            }
+        };
+    }
+    static Specification<FilterCondition> hasFilterId(Long filterId) {
+        return (criteria, cq, cb) -> {
+            if (filterId == null) {
+                return null;
+            } else {
+                return cb.equal(criteria.get("filter").get("id"),  filterId );
             }
         };
     }
