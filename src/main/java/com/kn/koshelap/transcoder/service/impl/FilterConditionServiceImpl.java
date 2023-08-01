@@ -14,7 +14,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.kn.koshelap.transcoder.domain.Capital;
+import com.kn.koshelap.transcoder.domain.FieldAttribute;
 import com.kn.koshelap.transcoder.domain.FilterCondition;
+import com.kn.koshelap.transcoder.dto.FilterConditionDto;
 import com.kn.koshelap.transcoder.dto.FilterConditionDts;
 import com.kn.koshelap.transcoder.dto.FilterConditionDtsList;
 import com.kn.koshelap.transcoder.dto.search.FilterSearchDto;
@@ -29,8 +31,8 @@ public class FilterConditionServiceImpl implements FilterConditionService {
     @Autowired
     private  MappingService mapper;
     @Override
-    public List<String> getFieldNameList() {
-        return findAllFields(Capital.class).stream().map(Field::getName).collect(Collectors.toList());
+    public List<FieldAttribute> getFieldNameList() {
+        return findAllFields(Capital.class).stream().map(field-> new FieldAttribute(field.getName(), field.getType().getName())).collect(Collectors.toList());
     }
 
     @Override
@@ -55,8 +57,8 @@ public class FilterConditionServiceImpl implements FilterConditionService {
     }
 
     @Override
-    public FilterConditionDts save(FilterConditionDts filterConditionDts) {
-        return mapper.map(repository.save(mapper.map(filterConditionDts, FilterCondition.class)), FilterConditionDts.class);
+    public FilterConditionDto save(FilterConditionDto filterConditionDto) {
+        return mapper.map(repository.save(mapper.map(filterConditionDto, FilterCondition.class)), FilterConditionDto.class);
     }
 
     @Override
