@@ -1,4 +1,4 @@
-package com.kn.koshelap.transcoder.repository;
+package com.kn.koshelap.transcoder.service;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
